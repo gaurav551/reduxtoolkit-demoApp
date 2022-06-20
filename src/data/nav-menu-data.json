@@ -1,0 +1,16 @@
+[
+    {
+        "id": "1",
+        "name": "Contact",
+        "slug": "contact",
+        "link": "/contact",
+        "icon": "gear-inactive.png"
+    },
+    {
+        "id": "2",
+        "name": "About",
+        "slug": "about",
+        "link": "/about",
+        "icon": "gear-inactive.png"
+    }
+]

@@ -1,0 +1,1 @@
+export const attachmentPath = `documents/`;
