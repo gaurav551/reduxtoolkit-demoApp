@@ -2,22 +2,21 @@ import { About } from '../pages/About';
 import { Contact } from '../pages/Contact';
 import { SubmitCandidateDetail } from '../pages/Candidate/SubmitCandidateDetail';
 import { ViewCandidateDetail } from '../pages/Candidate/ViewCandidateDetail';
-import { SimpleForm } from '../pages/Candidate/SimpleForm';
 
 const routes = [
   {
     path: '/',
-    element: <ViewCandidateDetail/>,
-    exact: true
-  },
-  {
-    path: '/about',
     element: <SubmitCandidateDetail/>,
     exact: true
   },
   {
+    path: '/about',
+    element: <About/>,
+    exact: true
+  },
+  {
     path: '/contact',
-    element: <SimpleForm/>,
+    element: <Contact/>,
     exact: true
   },
   {

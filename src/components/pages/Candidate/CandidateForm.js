@@ -14,6 +14,7 @@ import Button from "@mui/material/Button";
 import RadioGroup from "@mui/material/RadioGroup";
 import { Alert } from "@mui/material";
 import * as yup from 'yup'
+import SendIcon from '@mui/icons-material/Send';
 import { yupResolver } from '@hookform/resolvers/yup';
 export const CandidateForm = (props) => {
     let skillMatches = [
@@ -419,7 +420,7 @@ export const CandidateForm = (props) => {
             </Col>
             <Col sm={4}>
               <FormControlLabel
-                control={<Checkbox />}
+                control={<Checkbox  {...register("willingToRelocate")} />}
                 label="Willing to relocate"
               />
             </Col>
@@ -499,6 +500,7 @@ export const CandidateForm = (props) => {
             onClick={handleSubmit(props.onSubmit, props.onError)}
             size="large"
             variant="contained"
+            endIcon={<SendIcon />}
           >
             Submit Candidate
           </Button>

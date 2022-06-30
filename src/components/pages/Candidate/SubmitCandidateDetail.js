@@ -8,8 +8,9 @@ import { clear, postData } from "../../../features/candidate/candidateSlice";
 import { uploadAttachment } from "../../../features/candidate/uploadAttachmentSlice";
 import { Alert } from "@mui/material";
 import { showModal } from "../../../features/alertModal/alertModalSlice";
+import generateUniqueId from "../../../utils/generateUniqeId";
 export const SubmitCandidateDetail = () => {
- 
+
 
   let jobPosition = "Technical Architect";
   let jobId = "00047564991";
@@ -22,7 +23,7 @@ export const SubmitCandidateDetail = () => {
   const dispatch = useDispatch()
 
 
- 
+
   React.useEffect(() => {
     dispatch(clear())
     return () => {
@@ -31,7 +32,7 @@ export const SubmitCandidateDetail = () => {
   }, [dispatch])
   const candidate = useSelector((state) => state.candidate);
 
-  const{data,error,success,loading} = candidate;
+  const { data, error, success, loading } = candidate;
 
   const onSubmit = (data) => {
     dispatch(clear())
@@ -39,11 +40,21 @@ export const SubmitCandidateDetail = () => {
     let formData = new FormData();
     let resume = data.attachment.resume[0];
     let document = data.attachment.document[0];
+
+    let resumePath = generateUniqueId() + resume?.name;
+    let documentPath = generateUniqueId() + document?.name;
+
     formData.append("Resume", resume);
     formData.append("Document", document);
+    formData.append("ResumePath", resumePath);
+    formData.append("DocumentPath", documentPath);
     dispatch(uploadAttachment(formData));
+
     requestData.attachment.resume = resume?.name;
     requestData.attachment.document = document?.name;
+    requestData.attachment.resumePath = resumePath;
+    requestData.attachment.documentPath = documentPath;
+
     //Get only checked items
     requestData.employmentTypes = getCheckedValues(data.employmentTypes);
     requestData.workAuthorizationStatuses = getCheckedValues(
@@ -57,7 +68,8 @@ export const SubmitCandidateDetail = () => {
   const showAlertModal = (data) => {
     dispatch(showModal(data));
   }
- 
+
+
   return (
     <>
       {/* {showAlertModal} */}
@@ -78,7 +90,8 @@ export const SubmitCandidateDetail = () => {
         formErrorMessage={formErrorMessage}
       />
       <br />
-      {success !== null && success && showAlertModal({type:"SS",message:"R",linkText:"View Job Posting",link:`/viewCandidateDetail/${data?.id}`}) }
+      {success !== null && success && showAlertModal({ type: "success", message: "Thank you for submitting your candidate for this job post. As a next step we will send email to the candidate to confirm his/her interest. Candidate acknowledgement is mandatory to  proceed further.", linkText: "View Job Posting", link: `/viewCandidateDetail/${data?.id}` })}
+      {success !== null && success && <Alert severity="success">{"Your request was successfully submitted"}</Alert>}
 
       {error !== null && error && <Alert severity="error">{error}</Alert>}
     </>

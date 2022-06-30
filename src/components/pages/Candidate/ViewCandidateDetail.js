@@ -22,6 +22,7 @@ import { getCandidate,clear } from "../../../features/candidate/getCandidateSlic
 import { Alert } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { JobDetailsCard } from "../Job/JobDetailsCard";
+import Checkbox from "@mui/material/Checkbox";
 
 
 export const ViewCandidateDetail = () => {
@@ -140,15 +141,19 @@ export const ViewCandidateDetail = () => {
              <Col sm={4}>State
              <p style={{fontWeight:'bold'}}>{data?.currentState}</p>
              </Col>
+             <Col sm={4}>Willing to relocate
+              
+             <p style={{fontWeight:'bold'}}><Checkbox disabled checked={data?.willingToRelocate}/></p>
+             </Col>
             
            </Row>
            <Row>
              <Col sm={4}>Resume
-             <p> <CheckBoxRoundedIcon style={{color:COLORS.primary}}/> {data?.attachment?.resume} <a target="_blank" href={`${baseUrl}${attachmentPath}${data?.attachment?.resume}`}> <DownloadOutlinedIcon  style={{color:COLORS.primary}}/> </a> </p>
+             <p> <CheckBoxRoundedIcon style={{color:COLORS.primary}}/> {data?.attachment?.resume} <a target="_blank" href={`${baseUrl}${attachmentPath}${data?.attachment?.resumePath}`}> <DownloadOutlinedIcon  style={{color:COLORS.primary}}/> </a> </p>
              </Col>
              
              <Col sm={4}>Document
-             <p> <CheckBoxRoundedIcon style={{color:COLORS.primary}}/> {data?.attachment?.resume} <a target="_blank" href={`${baseUrl}${attachmentPath}${data?.attachment?.document}`}>  <DownloadOutlinedIcon  style={{color:COLORS.primary}}/> </a> </p>
+             <p> <CheckBoxRoundedIcon style={{color:COLORS.primary}}/> {data?.attachment?.resume} <a target="_blank" href={`${baseUrl}${attachmentPath}${data?.attachment?.documentPath}`}>  <DownloadOutlinedIcon  style={{color:COLORS.primary}}/> </a> </p>
              </Col>
             
            </Row>

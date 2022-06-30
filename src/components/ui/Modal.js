@@ -39,9 +39,10 @@ export default function BasicModal(props) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-        <Alert severity="success"><h5>This is a {type} {message}</h5> <p>Thank you for submitting your candidate for this job post. As a next step we will send email to the candidate to confirm his/her interest. Candidate acknowledgement is mandatory to  proceed further</p>  
+        <Alert severity={type}> <p>{message}</p>  
         
-         <p className='text-center'><Link onClick={()=>dispatch(hideModal())} style={{color:COLORS.primary}} to={link}>Go to {linkText}</Link></p>
+        
+       {link!==null && linkText!==null &&  <p className='text-center'><Link onClick={()=>dispatch(hideModal())} style={{color:COLORS.primary}} to={link}>Go to {linkText}</Link></p> } 
 
          </Alert>
         </Box>
